@@ -43,3 +43,32 @@ Skills Demonstrated
 * User interface development
 * Healthcare software design
 * Team collaboration
+
+
+## Project Screenshots
+
+The following screenshots demonstrate the interfaces I worked on as part of the Sensore group project.
+
+### Clinician Dashboard
+
+![Clinician Dashboard Overview](Sensore-My-Contribution/screenshot-evidence/clinician-dashboard1.png)
+
+![Dashboard Monitoring Information](Sensore-My-Contribution/screenshot-evidence/clinician-dashboard2.png)
+
+### Patient Management
+
+![Patient Management](Sensore-My-Contribution/screenshot-evidence/patient-management.png)
+
+### Alerts and Appointments
+
+![Alerts](Sensore-My-Contribution/screenshot-evidence/alerts.png)
+
+![Appointments](Sensore-My-Contribution/screenshot-evidence/appointments.png)
+
+### Patient Vitals, Notes and Reports
+
+![Patient Vitals](Sensore-My-Contribution/screenshot-evidence/patient-vitals.png)
+
+![Notes](Sensore-My-Contribution/screenshot-evidence/notes.png)
+
+![Reports](Sensore-My-Contribution/screenshot-evidence/reports.png)
