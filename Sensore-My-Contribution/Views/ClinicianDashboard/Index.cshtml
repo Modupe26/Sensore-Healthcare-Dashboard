@@ -1,0 +1,130 @@
+@model PatientPortal.ViewModels.ClinicianDashboardViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianLayout.cshtml";
+}
+
+<h2>Clinician Dashboard</h2>
+
+<!-- ================= SUMMARY ================= -->
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card"><div class="card-body">
+            <h5>Total Patients</h5>
+            <h3>@Model.PatientCount</h3>
+        </div></div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card"><div class="card-body">
+            <h5>Active Alerts</h5>
+            <h3>@Model.ActiveAlertCount</h3>
+        </div></div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card"><div class="card-body">
+            <h5>Reports</h5>
+            <h3>@Model.UnreadReportCount</h3>
+        </div></div>
+    </div>
+
+</div>
+
+<hr />
+
+<!-- ================= RECENT ALERTS ================= -->
+<h3>Recent Alerts</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Message</th>
+            <th>Severity</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DashboardAlertItem a in Model.RecentAlerts)
+        {
+            <tr>
+                <td>@a.PatientName</td>
+                <td>@a.Message</td>
+                <td>@a.Severity</td>
+                <td>@a.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<!-- ================= UPCOMING APPOINTMENTS ================= -->
+<h3>Upcoming Appointments</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Starts</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DashboardAppointmentItem appt in Model.UpcomingAppointments)
+        {
+            <tr>
+                <td>@appt.PatientName</td>
+                <td>@appt.StartsAt</td>
+                <td>@appt.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<!-- ================= SENSOR DATA ================= -->
+<h3>Recent Sensor Data</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Pressure</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DashboardSensorItem s in Model.RecentSensorData)
+        {
+            <tr>
+                <td>@s.PatientName</td>
+                <td>@s.Pressure</td>
+                <td>@s.Timestamp</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<!-- ================= COMMENTS ================= -->
+<h3>Recent Comments</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Comment</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DashboardCommentItem c in Model.RecentComments)
+        {
+            <tr>
+                <td>@c.PatientName</td>
+                <td>@c.BodyText</td>
+                <td>@c.CreatedAtUtc</td>
+            </tr>
+        }
+    </tbody>
+</table>

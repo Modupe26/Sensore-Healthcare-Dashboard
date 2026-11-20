@@ -1,0 +1,28 @@
+@model PatientPortal.ViewModels.ClinicianVitalViewModel
+
+@{
+    Layout = "~/Views/Shared/_ClinicianLayout.cshtml";
+}
+
+<h2>Vitals</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Patient</th>
+        <th>Pressure</th>
+        <th>Timestamp</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var v in Model.Vitals)
+    {
+        <tr>
+            <td>@v.PatientName</td>
+            <td>@v.Pressure</td>
+            <td>@v.RecordedAt</td>
+        </tr>
+    }
+    </tbody>
+</table>

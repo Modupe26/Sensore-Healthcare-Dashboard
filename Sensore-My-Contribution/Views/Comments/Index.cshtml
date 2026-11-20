@@ -1,0 +1,82 @@
+@using PatientPortal.Models
+@model IEnumerable<Comment>
+
+@{
+    ViewData["Title"] = "Comments";
+    var patientName = ViewBag.PatientName as string ?? "Patient";
+    var patientId = (int)(ViewBag.PatientId ?? 0);
+}
+
+<h1>Comments for @patientName</h1>
+
+<div class="row">
+    <div class="col-md-5">
+        <h3>New comment</h3>
+        <form asp-action="Create" method="post">
+            <input type="hidden" name="patientId" value="@patientId" />
+
+            <div class="mb-2">
+                <label for="authorDisplayName" class="form-label">Your name (optional)</label>
+                <input id="authorDisplayName" name="authorDisplayName" class="form-control" />
+            </div>
+
+            <div class="mb-2">
+                <label for="authorType" class="form-label">Who are you?</label>
+                <select id="authorType" name="authorType" class="form-select">
+                    <option value="@CommentAuthorType.Patient">Patient</option>
+                    <option value="@CommentAuthorType.Clinician">Clinician</option>
+                    <option value="@CommentAuthorType.Admin">Admin</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label for="bodyText" class="form-label">Message</label>
+                <textarea id="bodyText" name="bodyText" class="form-control" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Post comment</button>
+        </form>
+    </div>
+
+    <div class="col-md-7">
+        <h3>Previous comments</h3>
+
+        @if (!Model.Any())
+        {
+            <p>No comments yet.</p>
+        }
+        else
+        {
+            <ul class="list-group">
+                @foreach (var c in Model)
+                {
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>@c.AuthorDisplayName</strong>
+                                (<em>@c.AuthorType</em>)
+                                <span class="text-muted">
+                                    @c.CreatedAtUtc.ToLocalTime().ToString("dd MMM yyyy HH:mm")
+                                </span>
+                                <br />
+                                @c.BodyText
+                                <br />
+                                <small>Status: @c.Status | Visibility: @c.Visibility | Flagged: @(c.IsFlagged ? "Yes" : "No")</small>
+                            </div>
+                            <div class="text-end">
+                                <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-secondary mb-1">Edit</a>
+
+                                <form asp-action="Delete" asp-route-id="@c.Id" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Delete this comment?');">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

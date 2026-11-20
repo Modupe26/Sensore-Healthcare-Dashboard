@@ -1,0 +1,33 @@
+@model PatientPortal.ViewModels.ClinicianNotesViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianLayout.cshtml";
+}
+
+<h2>Notes</h2>
+
+@if (!Model.Notes.Any())
+{
+    <p>No notes yet.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Note</th>
+            <th>Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var n in Model.Notes)
+        {
+            <tr>
+                <td>@n.PatientName</td>
+                <td>@n.Note</td>
+                <td>@n.CreatedAt</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

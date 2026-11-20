@@ -1,0 +1,28 @@
+@model PatientPortal.ViewModels.ClinicianAppointmentViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianLayout.cshtml";
+}
+
+<h2>Appointments</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Patient</th>
+        <th>Starts At</th>
+        <th>Location</th>
+        <th>Reason</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var a in Model.Appointments)
+    {
+        <tr>
+            <td>@a.PatientName</td>
+            <td>@a.StartsAt</td>
+            <td>@a.Location</td>
+            <td>@a.Reason</td>
+        </tr>
+    }
+    </tbody>
+</table>

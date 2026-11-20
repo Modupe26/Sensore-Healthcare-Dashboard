@@ -1,0 +1,30 @@
+@model PatientPortal.ViewModels.ClinicianAlertsViewModel
+@{
+    Layout = "~/Views/Shared/_ClinicianLayout.cshtml";
+}
+
+<h2>Alerts</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Patient</th>
+        <th>Message</th>
+        <th>Severity</th>
+        <th>Created</th>
+        <th>Acknowledged</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var a in Model.Alerts)
+    {
+        <tr>
+            <td>@a.PatientName</td>
+            <td>@a.Message</td>
+            <td>@a.Severity</td>
+            <td>@a.CreatedAt</td>
+            <td>@(a.Acknowledged ? "Yes" : "No")</td>
+        </tr>
+    }
+    </tbody>
+</table>
